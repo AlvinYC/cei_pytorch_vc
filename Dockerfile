@@ -26,7 +26,7 @@ RUN TZ=Asia/Taipei \
 # install necessary ubuntu application
 RUN apt-get update && apt-get install -y \
     apt-utils sudo vim zsh curl git make unzip \
-    wget openssh-server \
+    wget openssh-server rsync\
     powerline fonts-powerline \
     # necessary ubuntu package for sudo add-apt-repository ppa:deadsnakes/ppa
     software-properties-common \

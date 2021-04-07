@@ -3,7 +3,8 @@ cd ~/
 cd ~/utils_thisbuild
 
 #ln -s ~/utils_thisbuild ~/cei_pytorch_vc/utils_thisbuild/ 
-mv ~/utils_thisbuild/* ~/cei_pytorch_vc/utils_thisbuild
+#mv ~/utils_thisbuild/* ~/cei_pytorch_vc/utils_thisbuild
+rsync -av --exclude='*sh' ~/utils_thisbuild ~/cei_pytorch_vc/ 
 #basically, this folder need the following file
 # 1.[file] 20171222_deepvoice3_vctk108_checkpoint_step000300000.pth
 # 2.[folder] presets
