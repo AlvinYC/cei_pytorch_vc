@@ -109,8 +109,8 @@ RUN python3 -m pip install --upgrade --user pip;\
     # project git clone
     git clone https://github.com/AlvinYC/${github}.git /home/${user}/${github}
     # fix pycnnum issue, ref: https://github.com/zcold/pycnnum/issues/4
-    #sed -ir 's/return \[system\.digits\[0.*/return \[system.digits\[0\], system.digits\[int\(striped_string\)\]\]/' \
-    #/home/${user}/.local/lib/python3.6/site-packages/pycnnum/pycnnum.py
+    sed -ir 's/return \[system\.digits\[0.*/return \[system.digits\[0\], system.digits\[int\(striped_string\)\]\]/' \
+    /home/${user}/.local/lib/python3.6/site-packages/pycnnum/pycnnum.py
 
 
 #RUN mkdir /home/${user}/${workdir}; mkdir /home/${user}/${local_package}
