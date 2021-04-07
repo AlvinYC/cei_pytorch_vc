@@ -2,7 +2,16 @@ cd ~/
 #sh -c 'mv utils_thisbuild content'
 cd ~/utils_thisbuild
 
-ln -s ~/utils_thisbuild ~/cei_pytorch_vc/utils_thisbuild 
+#ln -s ~/utils_thisbuild ~/cei_pytorch_vc/utils_thisbuild/ 
+mv ~/utils_thisbuild/* ~/cei_pytorch_vc/utils_thisbuild
+#basically, this folder need the following file
+# 1.[file] 20171222_deepvoice3_vctk108_checkpoint_step000300000.pth
+# 2.[folder] presets
+#        - [file] deepvoice3_ljspeech.json
+#        - [file] deepvoice3_niklm.json
+#        - [file] deepvoice3_nikls.json
+#        - [file] deepvoice3_vctk.json
+#        - [file] nyanko_ljspeech.json
 python -c "import nltk; nltk.download('cmudict')"
 
 # download necessary model file and map file 
