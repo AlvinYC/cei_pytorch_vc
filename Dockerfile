@@ -1,5 +1,6 @@
 #FROM  pytorch/pytorch:1.5.1-cuda10.1-cudnn7-runtime
 FROM pytorch/pytorch:1.3-cuda10.1-cudnn7-devel
+#FROM nvidia/cuda:8.0-cudnn6-devel-ubuntu16.04
 MAINTAINER alvin
 
 # account info (pwd is not necessary for this config)
@@ -84,14 +85,21 @@ RUN sudo apt-get -y install ipython ipython-notebook
 #    python3 -m pip install jupyter
 
 
+#RUN sudo add-apt-repository ppa:deadsnakes/ppa -y ;\
+#    sudo apt-get update -y; \
+#    sudo apt-get autoremove python3.5 -y; \
+#    sudo apt-get install python3.6 -y;\
+#    sudo apt-get install python3-pip -y;\
+#    sudo apt-get install python3.6-dev -y;\
+#    echo ${cudapathsetup} >> ~/.zshrc;\
+#    cd /usr/bin; sudo unlink python3; sudo ln -s python3.6 python3; \
+#    sudo unlink python; sudo ln -s python3.6 python
 
-# python package setup
-#ARG cudapathsetup="alias watch1=watch -n 0.5\n\dd
-#export PATH=/home/${user}/.local/bin:$PATH"
 
-# original image pytorch 1.3 
+# original image pytorch 1.3 --> downgrad to 0.3.1 
 # tensorflow-gpu 1.4
 RUN python3 -m pip install --upgrade --user pip;\
+    python3 -m pip install --user numpy==1.16.0;\
     python3 -m pip install --user ipython==7.16.1;\
     python3 -m pip install --user Flask==1.1.2;\
     python3 -m pip install --user opencc-python-reimplemented==0.1.6;\
@@ -99,6 +107,7 @@ RUN python3 -m pip install --upgrade --user pip;\
     python3 -m pip install --user pycnnum==1.0.1;\
     python3 -m pip install --user gdown==3.12.2;\
     python3 -m pip install --user tensorflow-gpu==1.14.0;\
+    python3 -m pip install --user torch==0.3.1;\
     python3 -m pip install --user lws==1.2.7;\
     python3 -m pip install --user unidecode==1.2.0;\
     python3 -m pip install --user inflect==5.3.0;\
@@ -106,8 +115,11 @@ RUN python3 -m pip install --upgrade --user pip;\
     python3 -m pip install --user tensorboardX==2.2;\
     python3 -m pip install --user nltk==3.5;\
     python3 -m pip install --user jupyter==1.0.0;\
+    python3 -m pip install --user librosa==0.8.0;\
+    python3 -m pip install --user matplotlib==3.3.4;\
+    python3 -m pip install --user docopt==0.6.2;\
     # project git clone
-    git clone https://github.com/AlvinYC/${github}.git /home/${user}/${github}
+    git clone https://github.com/AlvinYC/${github}.git /home/${user}/${github};\
     # fix pycnnum issue, ref: https://github.com/zcold/pycnnum/issues/4
     sed -ir 's/return \[system\.digits\[0.*/return \[system.digits\[0\], system.digits\[int\(striped_string\)\]\]/' \
     /home/${user}/.local/lib/python3.6/site-packages/pycnnum/pycnnum.py
