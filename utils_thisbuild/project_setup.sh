@@ -2,22 +2,11 @@ cd ~/
 #sh -c 'mv utils_thisbuild content'
 cd ~/utils_thisbuild
 
-#ln -s ~/utils_thisbuild ~/cei_pytorch_vc/utils_thisbuild/ 
-#mv ~/utils_thisbuild/* ~/cei_pytorch_vc/utils_thisbuild
-rsync -av --exclude='*sh' ~/utils_thisbuild ~/cei_pytorch_vc/ 
-#basically, this folder need the following file
-# 1.[file] 20171222_deepvoice3_vctk108_checkpoint_step000300000.pth
-# 2.[folder] presets
-#        - [file] deepvoice3_ljspeech.json
-#        - [file] deepvoice3_niklm.json
-#        - [file] deepvoice3_nikls.json
-#        - [file] deepvoice3_vctk.json
-#        - [file] nyanko_ljspeech.json
-python -c "import nltk; nltk.download('cmudict')"
-
 # download necessary model file and map file 
-#sudo /home/docker/.local/bin/gdown --id "1JAAMAwvXvFnzKQmtBknO8omlQsJb1Hvh"
-#sudo /home/docker/.local/bin/gdown --id "1loUhwVyax8ArDLMFIseuTBeUZKjjBBIh"
+sudo /home/docker/.local/bin/gdown --id "11dHZ_Fl2DLkfxlg0_4ayimRgjowLOkgs"
+sudo /home/docker/.local/bin/gdown --id "1uFBbk0iqyCDAAnrs8jqNgz3T3I9ewuB5"
+sudo chown -R ~/utils_thisbuild
+tar -xvf presets.tar.gz
 #sudo /home/docker/.local/bin/gdown --id "1pvAkaCxt9UIHt6SE-MJtg0ckGjUFZ569"
 #sudo /home/docker/.local/bin/gdown --id "1Qcg_LkW0nRO5932OP29nuR_B1yMi6VVA"
 #sudo /home/docker/.local/bin/gdown --id "1PNp2a7dlXH8AiovEUV5EpjtZdSnVz5v6"
@@ -31,3 +20,17 @@ python -c "import nltk; nltk.download('cmudict')"
 #sh -c 'cat /home/docker/utils_thisbuild/*pub > /home/docker/.ssh/authorized_keys'
 sh -c 'git config --global user.name alvinyc'
 sh -c 'git config --global user.email chen.yongcheng@gmail.com'
+
+
+rsync -av --exclude='*sh' ~/utils_thisbuild ~/cei_pytorch_vc/ 
+#basically, this folder need the following file
+# 1.[file] 20171222_deepvoice3_vctk108_checkpoint_step000300000.pth
+# 2.[folder] presets
+#        - [file] deepvoice3_ljspeech.json
+#        - [file] deepvoice3_niklm.json
+#        - [file] deepvoice3_nikls.json
+#        - [file] deepvoice3_vctk.json
+#        - [file] nyanko_ljspeech.json
+python -c "import nltk; nltk.download('cmudict')"
+
+
