@@ -5,8 +5,8 @@ cd ~/utils_thisbuild
 # download necessary model file and map file 
 sudo /home/docker/.local/bin/gdown --id "11dHZ_Fl2DLkfxlg0_4ayimRgjowLOkgs"
 sudo /home/docker/.local/bin/gdown --id "1uFBbk0iqyCDAAnrs8jqNgz3T3I9ewuB5"
-sudo chown -R ~/utils_thisbuild
-tar -xvf presets.tar.gz
+sudo chown -R docker:docker ~/utils_thisbuild
+tar -xvf preset.tar.gz
 #sudo /home/docker/.local/bin/gdown --id "1pvAkaCxt9UIHt6SE-MJtg0ckGjUFZ569"
 #sudo /home/docker/.local/bin/gdown --id "1Qcg_LkW0nRO5932OP29nuR_B1yMi6VVA"
 #sudo /home/docker/.local/bin/gdown --id "1PNp2a7dlXH8AiovEUV5EpjtZdSnVz5v6"
