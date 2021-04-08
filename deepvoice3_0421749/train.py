@@ -429,7 +429,7 @@ def save_states(global_step, writer, mel_outputs, linear_outputs, attn, mel, y,
         for i, alignment in enumerate(attn):
             alignment = alignment[idx].cpu().data.numpy()
             tag = "alignment_layer{}".format(i + 1)
-            writer.add_image(tag, np.uint8(cm.viridis(np.flip(alignment, 1).T) * 255), global_step)
+            writer.add_image(tag, np.uint8(cm.viridis(np.flip(alignment, 1).T) * 255), global_step,dataformats='HWC')
 
             # save files as well for now
             alignment_dir = join(checkpoint_dir, "alignment_layer{}".format(i + 1))
@@ -446,19 +446,19 @@ def save_states(global_step, writer, mel_outputs, linear_outputs, attn, mel, y,
         save_alignment(path, alignment)
 
         tag = "averaged_alignment"
-        writer.add_image(tag, np.uint8(cm.viridis(np.flip(alignment, 1).T) * 255), global_step)
+        writer.add_image(tag, np.uint8(cm.viridis(np.flip(alignment, 1).T) * 255), global_step,dataformats='HWC')
 
     # Predicted mel spectrogram
     if mel_outputs is not None:
         mel_output = mel_outputs[idx].cpu().data.numpy()
         mel_output = prepare_spec_image(audio._denormalize(mel_output))
-        writer.add_image("Predicted mel spectrogram", mel_output, global_step)
+        writer.add_image("Predicted mel spectrogram", mel_output, global_step,dataformats='HWC')
 
     # Predicted spectrogram
     if linear_outputs is not None:
         linear_output = linear_outputs[idx].cpu().data.numpy()
         spectrogram = prepare_spec_image(audio._denormalize(linear_output))
-        writer.add_image("Predicted linear spectrogram", spectrogram, global_step)
+        writer.add_image("Predicted linear spectrogram", spectrogram, global_step,dataformats='HWC')
 
         # Predicted audio signal
         signal = audio.inv_spectrogram(linear_output.T)
@@ -476,13 +476,13 @@ def save_states(global_step, writer, mel_outputs, linear_outputs, attn, mel, y,
     if mel_outputs is not None:
         mel_output = mel[idx].cpu().data.numpy()
         mel_output = prepare_spec_image(audio._denormalize(mel_output))
-        writer.add_image("Target mel spectrogram", mel_output, global_step)
+        writer.add_image("Target mel spectrogram", mel_output, global_step,dataformats='HWC')
 
     # Target spectrogram
     if linear_outputs is not None:
         linear_output = y[idx].cpu().data.numpy()
         spectrogram = prepare_spec_image(audio._denormalize(linear_output))
-        writer.add_image("Target linear spectrogram", spectrogram, global_step)
+        writer.add_image("Target linear spectrogram", spectrogram, global_step,dataformats='HWC')
 
 
 def logit(x, eps=1e-8):
