@@ -396,10 +396,10 @@ def eval_model(global_step, writer, model, checkpoint_dir, ismultispeaker):
                 global_step, idx, speaker_str))
             save_alignment(path, alignment)
             tag = "eval_averaged_alignment_{}_{}".format(idx, speaker_str)
-            writer.add_image(tag, np.uint8(cm.viridis(np.flip(alignment, 1).T) * 255), global_step)
+            writer.add_image(tag, np.uint8(cm.viridis(np.flip(alignment, 1).T) * 255), global_step, dataformats='HWC')
 
             # Mel
-            writer.add_image("(Eval) Predicted mel spectrogram text{}_{}".format(idx, speaker_str),
+            writer.add_image("(Eval) Predicted mel spectrogram text{}_{}".format(idx, speaker_str, dataformats='HWC'),
                              prepare_spec_image(mel), global_step)
 
             # Audio
