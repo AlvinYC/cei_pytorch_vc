@@ -26,7 +26,7 @@ RUN TZ=Asia/Taipei \
 # install necessary ubuntu application
 RUN apt-get update && apt-get install -y \
     apt-utils sudo vim zsh curl git make unzip \
-    wget openssh-server rsync\
+    wget openssh-server rsync iproute2\
     powerline fonts-powerline \
     # necessary ubuntu package for sudo add-apt-repository ppa:deadsnakes/ppa
     software-properties-common \
@@ -51,7 +51,7 @@ WORKDIR /home/${user}
 # oh-my-zsh setup
 ARG omzthemesetup="POWERLEVEL9K_MODE=\"nerdfont-complete\"\n\
 ZSH_THEME=\"powerlevel9k\/powerlevel9k\"\n\n\
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(pyenv virtualenv context dir vcs)\n\
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(ip pyenv virtualenv context dir vcs)\n\
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status root_indicator background_jobs history time)\n\
 POWERLEVEL9K_VIRTUALENV_BACKGROUND=\"green\"\n\
 POWERLEVEL9K_PYENV_PROMPT_ALWAYS_SHOW=true\n\
