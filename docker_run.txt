@@ -1,0 +1,1 @@
+docker run -it --rm --gpus=all --shm-size=256m -p 7788:22 -p 8888:8888 -v /media/alvin/HD/dataset_audio/raw/LJSpeech-1.1:/home/docker/LJSpeech --name deepvoice deepvoice3:latest
