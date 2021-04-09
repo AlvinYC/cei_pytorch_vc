@@ -122,7 +122,9 @@ RUN python3 -m pip install --upgrade --user pip;\
     git clone https://github.com/AlvinYC/${github}.git /home/${user}/${github};\
     # fix pycnnum issue, ref: https://github.com/zcold/pycnnum/issues/4
     sed -ir 's/return \[system\.digits\[0.*/return \[system.digits\[0\], system.digits\[int\(striped_string\)\]\]/' \
-    /home/${user}/.local/lib/python3.6/site-packages/pycnnum/pycnnum.py
+    /home/${user}/.local/lib/python3.6/site-packages/pycnnum/pycnnum.py;\
+	# fix tensorboardX issue, add_image default dataformats information from CHW -> HWC
+    sed -ir "s/= 'CHW')/= 'HWC')/" /home/${user}/.local/lib/python3.6/site-packages/tensorboardX/writer.py
 
 
 #RUN mkdir /home/${user}/${workdir}; mkdir /home/${user}/${local_package}
