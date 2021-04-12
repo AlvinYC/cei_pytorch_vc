@@ -107,7 +107,8 @@ RUN python3 -m pip install --upgrade --user pip;\
     python3 -m pip install --user pycnnum==1.0.1;\
     python3 -m pip install --user gdown==3.12.2;\
     python3 -m pip install --user tensorflow-gpu==1.14.0;\
-    python3 -m pip install --user torch==0.3.1;\
+    #python3 -m pip install --user torch==0.3.1;\
+    python3 -m pip install --user http://download.pytorch.org/whl/cu91/torch-0.3.1-cp36-cp36m-linux_x86_64.whl;\
     python3 -m pip install --user lws==1.2.7;\
     python3 -m pip install --user unidecode==1.2.0;\
     python3 -m pip install --user inflect==5.3.0;\
