@@ -1,0 +1,29 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "synthesis",
+            "type": "python",
+            "request": "launch",
+            "program": "synthesis.py",
+            "console": "integratedTerminal",
+            "args":["./checkpoints/checkpoint_step001630000.pth","./demo_txt2.txt","./checkpoints", "--hparams","builder=deepvoice3,preset=deepvoice3_ljspeech"
+            ]
+        },
+
+
+        {
+            "name": "train",
+            "type": "python",
+            "request": "launch",
+            "program": "train.py",
+            "console": "integratedTerminal",
+            "args":["--data-root","./data/ljspeech/","--hparams","builder=deepvoice3,preset=deepvoice3_ljspeech"
+            ]
+        },
+
+    ]
+}
