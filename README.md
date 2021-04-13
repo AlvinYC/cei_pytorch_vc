@@ -40,5 +40,9 @@ data structure of /home/ailab/Documents/alvin_doc/VoiceConv/LJSpeech-1.1
     python train.py --data-root=./data/ljspeech/ --hparams="builder=deepvoice3,preset=deepvoice3_ljspeech"
  ```
 
+# inference/synthesis 
 
+```
+   python synthesis.py ./checkpoints/20210412_cei_ljspeech_checkpoint_step001630000.pth ./demostring.txt ./checkpoints --hparams "builder=deepvoice3,preset=deepvoice3_ljspeech
+```
  

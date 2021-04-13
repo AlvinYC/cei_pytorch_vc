@@ -2,4 +2,4 @@
 docker run -it --rm --gpus=all --shm-size=256m -p 7788:22 -p 8888:8888 -v /media/alvin/HD/dataset_audio/raw/LJSpeech-1.1:/home/docker/LJSpeech --name deepvoice deepvoice3:latest
 
 # in titanV
-docker run -it --rm --gpus=1 --shm-size=256m -v /home/ailab/Documents/alvin_doc/VoiceConv/LJSpeech-1.1:/home/docker/LJSpeech --name deepvoice --net=host deepvoice:latest
+docker run -it --rm --gpus=1 --shm-size=256m -v /home/ailab/Documents/alvin_doc/VoiceConv/LJSpeech-1.1:/home/docker/LJSpeech --name deepvoice --net=host deepvoice:torch031_cu91
