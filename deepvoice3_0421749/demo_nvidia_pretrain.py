@@ -12,7 +12,7 @@ waveglow = waveglow.remove_weightnorm(waveglow)
 waveglow = waveglow.to('cuda')
 waveglow.eval()
 
-text = "hello world, I missed you"
+text = "We are in the business of collaborative innovation and making those ideas happen. Building an innovative product can be challenging."
 
 # preprocessing
 sequence = np.array(tacotron2.text_to_sequence(text, ['english_cleaners']))[None, :]
@@ -25,7 +25,7 @@ with torch.no_grad():
 audio_numpy = audio[0].data.cpu().numpy()
 rate = 22050
 
-write("audio.wav", rate, audio_numpy)
+write("/eval_output/audio.wav", rate, audio_numpy)
 
 Audio(audio_numpy, rate=rate)
 print("mission completed")
