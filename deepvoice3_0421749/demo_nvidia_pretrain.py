@@ -21,7 +21,7 @@ sequence = torch.from_numpy(sequence).to(device='cuda', dtype=torch.int64)
 # run the models
 with torch.no_grad():
     _, mel, _, _ = tacotron2.infer(sequence)
-    audio = waveglow.infer(mel)
+    audio = waveglow.infer(mel) # mel.shape = torch.Size([1,80,854])
 audio_numpy = audio[0].data.cpu().numpy()
 rate = 22050
 
