@@ -14,7 +14,6 @@
             ]
         },
 
-
         {
             "name": "train",
             "type": "python",
@@ -24,6 +23,14 @@
             "args":["--data-root","./data/ljspeech/","--hparams","builder=deepvoice3,preset=deepvoice3_ljspeech"
             ]
         },
+
+        {
+            "name": "demo_nvidia_pretain",
+            "type": "python",
+            "request": "launch",
+            "program": "demo_nvidia_pretrain.py",
+            "console": "integratedTerminal"
+        },        
 
     ]
 }
