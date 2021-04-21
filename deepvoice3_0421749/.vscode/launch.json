@@ -10,7 +10,7 @@
             "request": "launch",
             "program": "synthesis.py",
             "console": "integratedTerminal",
-            "args":["./checkpoints/20210412_cei_ljspeech_checkpoint_step001630000.pth","./demostring.txt","./checkpoints", "--hparams","builder=deepvoice3,preset=deepvoice3_ljspeech"
+            "args":["./checkpoints/20210412_cei_ljspeech_checkpoint_step001630000.pth","./demostring.txt","/eval_output/", "--hparams","builder=deepvoice3,preset=deepvoice3_ljspeech"
             ]
         },
 

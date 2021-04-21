@@ -129,24 +129,25 @@ if __name__ == "__main__":
 
     os.makedirs(dst_dir, exist_ok=True)
     melx = np.array([])
-    specx = np.array([])
+    #specx = np.array([])
+    waveformx = np.array([])
+    sec2numpy = lambda sec: np.zeros(int(hparams.sample_rate * sec))
+
     with open(text_list_file_path, "rb") as f:
         lines = f.readlines()
         for idx, line in enumerate(lines):
             text = line.decode("utf-8")[:-1]
             words = nltk.word_tokenize(text)
             #waveform, alignment, _, _ = tts(
-            waveform, alignment, spec, mel = tts(
+            waveform, alignment, _, mel = tts(
                 model, text, p=replace_pronunciation_prob, speaker_id=speaker_id, fast=True)
-            melx = mel if idx==0 else np.concatenate((melx,mel),axis=0)
-            specx = spec if idx==0 else np.concatenate((specx,spec),axis=0)
-            dst_wav_path = join(dst_dir, "{}_{}{}.wav".format(
-                idx, checkpoint_name, file_name_suffix))
-            dst_alignment_path = join(
-                dst_dir, "{}_{}{}_alignment.png".format(idx, checkpoint_name,
-                                                        file_name_suffix))
-            plot_alignment(alignment.T, dst_alignment_path,
-                           info="{}, {}".format(hparams.builder, basename(checkpoint_path)))
+            # concatenate ecah wave/mel  
+            melx = np.array(mel,copy=True) if idx == 0 else np.concatenate((melx,mel),axis=0)
+            waveformx = np.array(waveform,copy=True)  if idx == 0 else np.concatenate((waveformx,sec2numpy(0.5), waveform),axis=0)
+            # save each utterance
+            dst_wav_path = join(dst_dir, "{}_{}{}.wav".format(idx, checkpoint_name, file_name_suffix))
+            dst_alignment_path = join(dst_dir, "{}_{}{}_alignment.png".format(idx, checkpoint_name,file_name_suffix))
+            plot_alignment(alignment.T, dst_alignment_path,info="{}, {}".format(hparams.builder, basename(checkpoint_path)))
             audio.save_wav(waveform, dst_wav_path)
             from os.path import basename, splitext
             name = splitext(basename(text_list_file_path))[0]
@@ -169,13 +170,22 @@ Your browser does not support the audio element.
                 print(idx, ": {}\n ({} chars, {} words)".format(text, len(text), len(words)))
 
     print("Finished! Check out {} for generated audio samples.".format(dst_dir))
-    #path = '/home/docker/cei_pytorch_vc/deepvoice3_0421749 /nvidia_waveglowpyt_fp32_20190427'
-    #waveglow = torch.hub.load('../utils_thisbuild/nvidia_waveglowpyt_fp32_20190427', 'nvidia_waveglow')
-    #waveglow = torch.hub.load(path, 'nvidia_waveglow', pretrained=True)
+    audio.save_wav(waveformx, dst_dir+'r9y9_output.wav')
+
+    ##################################
+    #    waveglow VOCODER part
+    ##################################
+    # save nvidia_waveglowpyt_fp32_20190427 to ~/.cache/torch/checkpoint/ 
+    # in current project, NVIDIA waveglow frame size seems didn't equeal to r9y9 TTS output mel frame size
+    # disable this function first
+    '''
     waveglow = torch.hub.load('nvidia/DeepLearningExamples:torchhub', 'nvidia_waveglow')
     waveglow = waveglow.remove_weightnorm(waveglow)
     waveglow = waveglow.to('cuda')
     waveglow.eval()
-    audio = waveglow.infer(mel)
-
+    with torch.no_grad():
+        tensor_mel = torch.tensor(melx.T).unsqueeze(0).to('cuda') # [m,80] --> [1,80,m] nvidia waveglow input format
+        glow_audio = waveglow.infer(tensor_mel)
+    audio.save_wav(glow_audio[0].data.cpu().numpy(), dst_dir+'r9y9_waveglow_output.wav')        
+    '''
     sys.exit(0)
