@@ -32,5 +32,15 @@
             "console": "integratedTerminal"
         },        
 
+        {
+            "name": "preprocess",
+            "type": "python",
+            "request": "launch",
+            "program": "preprocess.py",
+            "console": "integratedTerminal",
+            "args":["vctk","./vctk","./vctk"],
+            "justMyCode": false
+            //python preprocess.py  vctk ./vctk ./vctk
+        },    
     ]
 }
