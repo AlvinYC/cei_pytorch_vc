@@ -38,9 +38,11 @@
             "request": "launch",
             "program": "preprocess.py",
             "console": "integratedTerminal",
-            "args":["vctk","./vctk","./vctk"],
+            "args":["vctk","./vctk","./vctk/data"],
             "justMyCode": false
-            //python preprocess.py  vctk ./vctk ./vctk
+            //python preprocess.py  vctk ./vctk ./vctk/data
         },    
+
+ 
     ]
 }
