@@ -108,7 +108,7 @@ RUN python3 -m pip install --upgrade --user pip;\
     python3 -m pip install --user gdown==3.12.2;\
     python3 -m pip install --user tensorflow-gpu==1.14.0;\
     #python3 -m pip install --user torch==0.3.1;\
-    python3 -m pip install --user http://download.pytorch.org/whl/cu91/torch-0.3.1-cp36-cp36m-linux_x86_64.whl;\
+    #python3 -m pip install --user http://download.pytorch.org/whl/cu91/torch-0.3.1-cp36-cp36m-linux_x86_64.whl;\
     python3 -m pip install --user lws==1.2.7;\
     python3 -m pip install --user unidecode==1.2.0;\
     python3 -m pip install --user inflect==5.3.0;\
@@ -124,8 +124,10 @@ RUN python3 -m pip install --upgrade --user pip;\
     # fix pycnnum issue, ref: https://github.com/zcold/pycnnum/issues/4
     sed -ir 's/return \[system\.digits\[0.*/return \[system.digits\[0\], system.digits\[int\(striped_string\)\]\]/' \
     /home/${user}/.local/lib/python3.6/site-packages/pycnnum/pycnnum.py;\
-	# fix tensorboardX issue, add_image default dataformats information from CHW -> HWC
+    # fix tensorboardX issue, add_image default dataformats information from CHW -> HWC
     sed -ir "s/= 'CHW')/= 'HWC')/" /home/${user}/.local/lib/python3.6/site-packages/tensorboardX/writer.py
+    # fix vctk 0.92 format issue 
+    sed -Ei "s/(assert len\(fields\).*)/#\1\n            if len(fields)>6: continue/ " /home/docker/.local/lib/python3.6/site-packages/nnmnkwii/datasets/vctk.py
 
 
 #RUN mkdir /home/${user}/${workdir}; mkdir /home/${user}/${local_package}
