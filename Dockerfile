@@ -98,7 +98,8 @@ RUN sudo apt-get -y install ipython ipython-notebook
 
 # original image pytorch 1.3 --> downgrad to 0.3.1 
 # tensorflow-gpu 1.4
-RUN python3 -m pip install --upgrade --user pip;\
+#RUN python3 -m pip install --upgrade --user pip;\
+RUN python3 -m pip install --user pip==21.0.1;\
     python3 -m pip install --user numpy==1.16.0;\
     python3 -m pip install --user ipython==7.16.1;\
     python3 -m pip install --user Flask==1.1.2;\
@@ -106,7 +107,7 @@ RUN python3 -m pip install --upgrade --user pip;\
     python3 -m pip install --user zhon==1.1.5;\
     python3 -m pip install --user pycnnum==1.0.1;\
     python3 -m pip install --user gdown==3.12.2;\
-    python3 -m pip install --user tensorflow-gpu==1.14.0;\
+    #python3 -m pip install --user tensorflow-gpu==1.14.0;\
     #python3 -m pip install --user torch==0.3.1;\
     #python3 -m pip install --user http://download.pytorch.org/whl/cu91/torch-0.3.1-cp36-cp36m-linux_x86_64.whl;\
     python3 -m pip install --user lws==1.2.7;\
@@ -125,7 +126,7 @@ RUN python3 -m pip install --upgrade --user pip;\
     sed -ir 's/return \[system\.digits\[0.*/return \[system.digits\[0\], system.digits\[int\(striped_string\)\]\]/' \
     /home/${user}/.local/lib/python3.6/site-packages/pycnnum/pycnnum.py;\
     # fix tensorboardX issue, add_image default dataformats information from CHW -> HWC
-    sed -ir "s/= 'CHW')/= 'HWC')/" /home/${user}/.local/lib/python3.6/site-packages/tensorboardX/writer.py
+    sed -ir "s/= 'CHW')/= 'HWC')/" /home/${user}/.local/lib/python3.6/site-packages/tensorboardX/writer.py;\
     # fix vctk 0.92 format issue 
     sed -Ei "s/(assert len\(fields\).*)/#\1\n            if len(fields)>6: continue/ " /home/docker/.local/lib/python3.6/site-packages/nnmnkwii/datasets/vctk.py
 
