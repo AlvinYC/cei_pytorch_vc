@@ -7,6 +7,7 @@ cd ~/cei_pytorch_vc/utils_thisbuild
 sudo /home/docker/.local/bin/gdown --id "11dHZ_Fl2DLkfxlg0_4ayimRgjowLOkgs"
 sudo /home/docker/.local/bin/gdown --id "1uFBbk0iqyCDAAnrs8jqNgz3T3I9ewuB5"
 sudo /home/docker/.local/bin/gdown --id "16clV1dTpIBjdZossSDXGnjroe8BjKTzL"
+sudo /home/docker/.local/bin/gdown --id "1VFNPydEDdz9jWhZeAYjodtygM_87mXm1" 
 sudo chown -R docker:docker ~/cei_pytorch_vc/utils_thisbuild
 tar -xvf preset.tar.gz
 # merge all id_rsa.pub into this container
@@ -29,6 +30,7 @@ sh -c 'git config --global user.email chen.yongcheng@gmail.com'
 # move ljspeech inference model to checkpoints path 
 mkdir -p ~/cei_pytorch_vc/deepvoice3_0421749/checkpoints
 mv 20210412_cei_ljspeech_checkpoint_step001630000.pth ~/cei_pytorch_vc/deepvoice3_0421749/checkpoints
+mv 20210426_cei_ljspeech_vctk_p225_checkpoint_step000020000.pth ~/cei_pytorch_vc/deepvoice3_0421749/checkpoints
 
 # necessary nltk data for train/synthesis
 python -c "import nltk; nltk.download('cmudict')"
