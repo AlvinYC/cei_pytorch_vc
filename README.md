@@ -45,4 +45,13 @@ data structure of /home/ailab/Documents/alvin_doc/VoiceConv/LJSpeech-1.1
 ```
    python synthesis.py ./checkpoints/20210412_cei_ljspeech_checkpoint_step001630000.pth ./demostring.txt ./checkpoints --hparams "builder=deepvoice3,preset=deepvoice3_ljspeech
 ```
- 
+
+# adaptation
+```
+python train.py --data-root=./vctk --checkpoint-dir=checkpoints_vctk_adaptation\
+   --hparams="builder=deepvoice3,preset=deepvoice3_ljspeech"\
+   --log-event-path=log/deepvoice3_vctk_adaptation \
+   --restore-parts=./checkpoints/20210412_cei_ljspeech_checkpoint_step001630000.pth\ 
+   --speaker-id=2
+
+``` 
