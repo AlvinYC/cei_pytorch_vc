@@ -58,29 +58,30 @@ python preprocess.py vctk ./VCTK_r9y9 ./VCTK_r9y9/data
                      [name] [input dir] [output dir]
 
 ./VCTK_r9y9                     <-- input dir
-|-- data                        <-- output dir
+├── data                        <-- output dir
 |   | [npy]
-|   |-- train.txt
-|-- speaker-info.txt            <--- [1] copy from VCTK 0.92
-|-- txt                         <--- [2] copy from VCTK 0.92
-|   |-- p225 
-|   |    |-- p225_001.txt
-|   |    |-- p225_002.txt
-|   |    `-- p225_003.txt
-|   |-- p226
+|   └── train.txt
+├── speaker-info.txt            <--- [1] copy from VCTK 0.92
+├── txt                         <--- [2] copy from VCTK 0.92
+|   ├── p225 
+|   |    ├── p225_001.txt
+|   |    ├── p225_002.txt
+|   |    └── p225_003.txt
+|   ├── p226
     .....
-|   |-- p376
-|   `-- s5
-`-- wav48                       <--- [3] copy from VCTK 0.92
-    |-- p225
-    |    |-- p225_001.wav
-    |    |-- p225_002.wav
-    |    `-- p225_003.wav
-    |-- p226
-    `-- p227
+|   ├── p376
+|   └──s5
+└── wav48                       <--- [3] copy from VCTK 0.92
+    ├── p225
+    |    ├── p225_001.wav
+    |    ├── p225_002.wav
+    |    └── p225_003.wav
+    ├── p226
+    └── p227
 ```
->> symbolic link ./VCTK_r9y9/data to train.py path as ./vctk
->> ln -s /VCTK_r9y9 ./vctk
+
+ > symbolic link ./VCTK_r9y9/data to train.py path as ./vctk
+ > ln -s /VCTK_r9y9 ./vctk
 
 ```
 python train.py --data-root=./vctk\
@@ -89,4 +90,5 @@ python train.py --data-root=./vctk\
    --log-event-path=log/deepvoice3_vctk_adaptation \
    --restore-parts=./checkpoints/20210412_cei_ljspeech_checkpoint_step001630000.pth\ 
    --speaker-id=2
-``` 
+```
+
