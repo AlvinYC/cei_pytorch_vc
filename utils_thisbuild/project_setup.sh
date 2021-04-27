@@ -7,20 +7,25 @@ cd ~/cei_pytorch_vc/utils_thisbuild
 sudo /home/docker/.local/bin/gdown --id "11dHZ_Fl2DLkfxlg0_4ayimRgjowLOkgs"
 sudo /home/docker/.local/bin/gdown --id "1uFBbk0iqyCDAAnrs8jqNgz3T3I9ewuB5"
 sudo /home/docker/.local/bin/gdown --id "16clV1dTpIBjdZossSDXGnjroe8BjKTzL"
-# p225/p226/p376 adaptation model 
+# p225/p226/p227 adaptation model 
 sudo /home/docker/.local/bin/gdown --id "1VFNPydEDdz9jWhZeAYjodtygM_87mXm1"
 sudo /home/docker/.local/bin/gdown --id "1Dv1LD-usuGilqn4yBarrG1YGUdUgzNs8"
-sudo /home/docker/.local/bin/gdown --id "1OVwFpKiI4NHSAA1n5EjneAUaDcQfH9_c"
-# p225/p226/p376 target wave
+sudo /home/docker/.local/bin/gdown --id "1exapyU-P7o9xiRiJ1nbH8tLPnGMCmTjE"
+#sudo /home/docker/.local/bin/gdown --id "1OVwFpKiI4NHSAA1n5EjneAUaDcQfH9_c"
+# p225/p226/p227 target wav
 sudo /home/docker/.local/bin/gdown --id "1kj_X411hmSkQb0CUvcsXwK8BMTXhywmo"
 sudo /home/docker/.local/bin/gdown --id "13h-khtJe2x1Yi6zskxtidUJSRNcsVgti"
 sudo /home/docker/.local/bin/gdown --id "1ZT5wqdavaDZk6wiQ5FVJi3gPJAIdzABY"
 sudo /home/docker/.local/bin/gdown --id "1Yr9ytkXHAWIhCjEvJczYelHSh1LpT1Iz"
 sudo /home/docker/.local/bin/gdown --id "1080PECgaBsZLKgg5GuDmRxKhdNhSMpPL" 
 sudo /home/docker/.local/bin/gdown --id "10mtmmZuTkIGe0QGF0hj1owrfqiR0bfe_"
-sudo /home/docker/.local/bin/gdown --id "1LwMAEx-PF0dOf3nhqMLkQHwun5Y2CG3r"
-sudo /home/docker/.local/bin/gdown --id "1488XpJKVRMfk8xCI4u5GeEKImRAU755f"
-sudo /home/docker/.local/bin/gdown --id "123rQ93Xt_K0Jhpj4ROQhj3eVIOnnfVde"
+sudo /home/docker/.local/bin/gdown --id "1CVrjNFFUfkPcfl38I8jJf2czRvSR-h2N"
+sudo /home/docker/.local/bin/gdown --id "1CgQxYeIisp6uA_9p5aapS7tNPgUdwOQ0"
+sudo /home/docker/.local/bin/gdown --id "12gfNYnQYpbgfK961TO23RS5bZDBPuPAc"
+# p376
+#sudo /home/docker/.local/bin/gdown --id "1LwMAEx-PF0dOf3nhqMLkQHwun5Y2CG3r"
+#sudo /home/docker/.local/bin/gdown --id "1488XpJKVRMfk8xCI4u5GeEKImRAU755f"
+#sudo /home/docker/.local/bin/gdown --id "123rQ93Xt_K0Jhpj4ROQhj3eVIOnnfVde"
 sudo chown -R docker:docker ~/cei_pytorch_vc/utils_thisbuild
 tar -xvf preset.tar.gz
 # merge all id_rsa.pub into this container
@@ -44,7 +49,8 @@ mkdir -p ~/cei_pytorch_vc/deepvoice3_0421749/checkpoints
 mv 20210412_cei_ljspeech_checkpoint_step001630000.pth ~/cei_pytorch_vc/deepvoice3_0421749/checkpoints
 mv 20210426_cei_ljspeech_vctk_p225_checkpoint_step000020000.pth ~/cei_pytorch_vc/deepvoice3_0421749/checkpoints
 mv 20210426_cei_ljspeech_vctk_p226_checkpoint_step000040000.pth ~/cei_pytorch_vc/deepvoice3_0421749/checkpoints
-mv 20210426_cei_ljspeech_vctk_p376_checkpoint_step000040000.pth ~/cei_pytorch_vc/deepvoice3_0421749/checkpoints
+mv 20210426_cei_ljspeech_vctk_p227_checkpoint_step000040000.pth ~/cei_pytorch_vc/deepvoice3_0421749/checkpoints
+#mv 20210426_cei_ljspeech_vctk_p376_checkpoint_step000040000.pth ~/cei_pytorch_vc/deepvoice3_0421749/checkpoints
 mkdir -p ~/cei_pytorch_vc/deepvoice3_0421749/eval_output
 mv p225*wav ~/cei_pytroch_vc/deepvocie_0421749/eval_output
 mv p226*wav ~/cei_pytorch_vc/deepvoice_0421749/eval_output
