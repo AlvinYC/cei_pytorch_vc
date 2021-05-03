@@ -27,7 +27,7 @@ def select_wav(target_dir,max_sec):
             return select_files
         else:
             select_files.append(wav_file)
-    return True
+    return select_files
 
 def copy_sel(vctkdirs, cp_path, max_sec):
     sel_files = []
@@ -64,8 +64,9 @@ if __name__== "__main__":
     list(map(lambda x:get_duration_info(x), vctkdirs))
 
     # copy with limitation 
-    cp_path = '/media/alvin/HD/dataset_audio/raw/VCTK_r9y9_05min/wav48'
-    sel_files = copy_sel(vctkdirs,cp_path,300)                      # ['/media/alvin/HD/dataset_audio/raw/VCTK_r9y9_10min/wav48/p225/',...]
+    cp_path = '/media/alvin/HD/dataset_audio/raw/VCTK_r9y9_10min/wav48'
+    max_sec = 600
+    sel_files = copy_sel(vctkdirs,cp_path,max_sec)                      # ['/media/alvin/HD/dataset_audio/raw/VCTK_r9y9_10min/wav48/p225/',...]
 
     # copy txt according to filtered wav
     copy_sel_txt(vctkdirs ,cp_path,sel_files)
