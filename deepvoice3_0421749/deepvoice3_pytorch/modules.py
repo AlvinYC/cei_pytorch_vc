@@ -48,18 +48,19 @@ class SinusoidalEncoding(nn.Embedding):
 
         if isscaler or w.size(0) == 1:
             weight = sinusoidal_encode(self.weight, w)
-            '''
+            
             return self._backend.Embedding.apply(
                 x, weight,
                 padding_idx, self.max_norm, self.norm_type,
                 self.scale_grad_by_freq, self.sparse
             )
-            '''
+            '''pytorch 1.3
             return F.embedding(
                 x, weight,
                 padding_idx, self.max_norm, self.norm_type,
                 self.scale_grad_by_freq, self.sparse
             )
+            '''
         else:
             # TODO: cannot simply apply for batch
             # better to implement efficient function
