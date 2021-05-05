@@ -1,9 +1,32 @@
-# alvin1080ti
-docker run -it --rm --gpus=all --shm-size=256m -p 7788:22 -p 8888:8888 -v /media/alvin/HD/dataset_audio/raw/LJSpeech-1.1:/home/docker/LJSpeech --name deepvoice deepvoice3:latest
+# alvin1080ti : training/synthsis
+docker run -it\
+ --rm\
+ --gpus=all\
+ --shm-size=256m\
+ -p 7788:22\
+ -p 8888:8888\
+ -v /media/alvin/HD/dataset_audio/raw/LJSpeech-1.1:/home/docker/LJSpeech\
+ -v /media/alvin/HD/dataset_audio/raw/VCTK_r9y9_10min:/home/docker/VCTK_r9y9\
+ -v /media/alvin/HD/eval_output:/home/docker/cei_pytorch_vc/deepvoice3_0421749/eval_output\
+ --name deepvoice r9y9tts:torch0.3
+
 
 # in titanV
-docker run -it --rm --gpus=1 --shm-size=256m -v /home/ailab/Documents/alvin_doc/VoiceConv/LJSpeech-1.1:/home/docker/LJSpeech --name deepvoice --net=host deepvoice:torch031_cu91
+docker run -it\
+ --rm\
+ --gpus=1\
+ --shm-size=256m\
+ -v /home/ailab/Documents/alvin_doc/VoiceConv/LJSpeech-1.1:/home/docker/LJSpeech\
+ --net=host\
+ --name deepvoice deepvoice:torch031_cu91
 
 # in ryk machine for synthesis
-docker run -it --rm --runtime=nvidia --shm-size=256m -p 7788:22 -p 8888:8888 -v /home/ryk/Documents/alvin_temp/cei_pytorch_vc/deepvoice3_0421749/eval_output:/home/docker/eval_output --name r9y9 r9y9:torch1.3
+docker run -it\
+ --rm\
+ --runtime=nvidia\
+ --shm-size=256m\
+ -p 7788:22\
+ -p 8888:8888\
+ -v /home/ryk/Documents/alvin_temp/cei_pytorch_vc/deepvoice3_0421749/eval_output:/home/docker/eval_output\
+ --name r9y9 r9y9:torch1.3
 
