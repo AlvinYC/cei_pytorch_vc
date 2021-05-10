@@ -173,6 +173,29 @@ Your browser does not support the audio element.
     audio.save_wav(waveformx, dst_dir+'r9y9_output.wav')
 
     ##################################
+    #    wavenet VOCODER part
+    ##################################
+    out=waveformx
+    constant_values = 0.0
+    out_dtype = np.float32
+    mel_spectrogram = audio.melspectrogram(waveformx).astype(np.float32).T
+    l, r = audio.lws_pad_lr(waveformx, hparams.fft_size, audio.get_hop_size())
+    # zero pad for quantized signal
+    out = np.pad(out, (l, r), mode="constant", constant_values=constant_values)
+    N = mel_spectrogram.shape[0]
+    assert len(out) >= N * audio.get_hop_size()
+    out = out[:N * audio.get_hop_size()]
+    assert len(out) % audio.get_hop_size() == 0
+    timesteps = len(out)
+
+    # Write the spectrograms to disk:
+    audio_filename = 'r9y9-tts-audio.npy' 
+    mel_filename = 'r9y9-tts-mel.npy' 
+    np.save(os.path.join(dst_dir, audio_filename), out.astype(out_dtype), allow_pickle=False)
+    np.save(os.path.join(dst_dir, mel_filename), mel_spectrogram.astype(np.float32), allow_pickle=False)
+
+
+    ##################################
     #    waveglow VOCODER part
     ##################################
     # save nvidia_waveglowpyt_fp32_20190427 to ~/.cache/torch/checkpoint/ 
