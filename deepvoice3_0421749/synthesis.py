@@ -175,6 +175,8 @@ Your browser does not support the audio element.
     ##################################
     #    wavenet VOCODER part
     ##################################
+    rescaling_max = 0.999
+    waveformx = waveformx / np.abs(waveformx).max() * rescaling_max
     out=waveformx
     constant_values = 0.0
     out_dtype = np.float32
