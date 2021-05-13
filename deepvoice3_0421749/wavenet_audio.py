@@ -3,7 +3,7 @@ import librosa.filters
 import math
 import numpy as np
 from scipy import signal
-from hparams_wavenet import hparams
+from wavenet_hparams import hparams
 from scipy.io import wavfile
 
 import lws

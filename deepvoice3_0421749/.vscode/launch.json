@@ -20,6 +20,23 @@
             // python synthesis.py "./checkpoints/20210503_cei_ljspeech_vctk_p225_10min_checkpoint_step000010000.pth" "./demostring.txt"  "./eval_output/"  "--hparams=builder=deepvoice3,preset=deepvoice3_ljspeech"
             // python synthesis.py "./checkpoints/20210426_cei_ljspeech_vctk_p225_checkpoint_step000020000.pth" "./demostring.txt"  "./eval_output/"  "--hparams=builder=deepvoice3,preset=deepvoice3_ljspeech"
         },
+        {
+            "name": "demo_taco_wavenet",
+            "type": "python",
+            "request": "launch",
+            "program": "demo_taco_wavenet.py",
+            "console": "integratedTerminal",
+            "args":["/home/docker/cei_pytorch_vc/deepvoice3_0421749/checkpoints/20210426_cei_ljspeech_vctk_p225_checkpoint_step000020000.pth",
+                "./demostring.txt",
+                "./eval_output/",
+                "--hparams","builder=deepvoice3,preset=deepvoice3_ljspeech",
+                "--wavenet_model","/home/docker/cei_pytorch_wavenet/utils_thisbuild/20180510_mixture_lj_checkpoint_step000320000_ema.pth",
+                "--wavenet_preset","/home/docker/cei_pytorch_wavenet/utils_thisbuild/20180510_mixture_lj_checkpoint_step000320000_ema.json",
+                "--conditional","/home/docker/cei_pytorch_vc/deepvoice3_0421749/eval_output/r9y9-tts-mel.npy"
+            ]
+            // run on terminal
+            // python synthesis.py "./checkpoints/20210426_cei_ljspeech_vctk_p225_checkpoint_step000020000.pth" "./demostring.txt"  "./eval_output/"  "--hparams=builder=deepvoice3,preset=deepvoice3_ljspeech"
+        },
 
         {
             "name": "train",

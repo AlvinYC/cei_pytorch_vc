@@ -22,7 +22,7 @@ import os
 from os.path import dirname, join, basename, splitext
 
 import audio
-import audio_wavenet
+import wavenet_audio
 import torch
 from torch.autograd import Variable
 import numpy as np
@@ -31,7 +31,7 @@ import nltk
 # The deepvoice3 model
 from deepvoice3_pytorch import frontend
 from hparams import hparams
-import hparams_wavenet
+import wavenet_hparams
 
 from tqdm import tqdm
 
@@ -177,18 +177,18 @@ Your browser does not support the audio element.
     #    wavenet VOCODER part
     ##################################
     #rescaling_max = 0.999
-    waveformx = waveformx / np.abs(waveformx).max() * hparams_wavenet.hparams.rescaling_max
+    waveformx = waveformx / np.abs(waveformx).max() * wavenet_hparams.hparams.rescaling_max
     out=waveformx
     constant_values = 0.0
     out_dtype = np.float32
-    mel_spectrogram = audio_wavenet.melspectrogram(waveformx).astype(np.float32).T
-    l, r = audio_wavenet.lws_pad_lr(waveformx, hparams_wavenet.hparams.fft_size, audio_wavenet.get_hop_size())
+    mel_spectrogram = wavenet_audio.melspectrogram(waveformx).astype(np.float32).T
+    l, r = wavenet_audio.lws_pad_lr(waveformx, wavenet_hparams.hparams.fft_size, wavenet_audio.get_hop_size())
     # zero pad for quantized signal
     out = np.pad(out, (l, r), mode="constant", constant_values=constant_values)
     N = mel_spectrogram.shape[0]
-    assert len(out) >= N * audio_wavenet.get_hop_size()
-    out = out[:N * audio_wavenet.get_hop_size()]
-    assert len(out) % audio_wavenet.get_hop_size() == 0
+    assert len(out) >= N * wavenet_audio.get_hop_size()
+    out = out[:N * wavenet_audio.get_hop_size()]
+    assert len(out) % wavenet_audio.get_hop_size() == 0
     timesteps = len(out)
 
     # Write the spectrograms to disk:
