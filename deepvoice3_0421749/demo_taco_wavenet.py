@@ -258,7 +258,7 @@ if __name__ == "__main__":
     ## VOCODER
     
     preset = args["--wavenet_preset"]
-    checkpoint_path = args["--wavenet_model"]
+    wavenet_model_path = args["--wavenet_model"]
     conditional_path = args["--conditional"]
     symmetric_mels = args["--symmetric-mels"]
     max_abs_value = float(args["--max-abs-value"])
@@ -286,14 +286,14 @@ if __name__ == "__main__":
 
 
     # Load checkpoint
-    print("Load checkpoint from {}".format(checkpoint_path))
+    print("Load checkpoint from {}".format(wavenet_model_path))
     if use_cuda:
-        checkpoint = torch.load(checkpoint_path)
+        checkpoint = torch.load(wavenet_model_path)
     else:
-        checkpoint = torch.load(checkpoint_path, map_location=lambda storage, loc: storage)
+        checkpoint = torch.load(wavenet_model_path, map_location=lambda storage, loc: storage)
         
     model.load_state_dict(checkpoint["state_dict"])
-    checkpoint_name = splitext(basename(checkpoint_path))[0]
+    checkpoint_name = splitext(basename(wavenet_model_path))[0]
 
     # Load conditional features
     '''
@@ -311,10 +311,10 @@ if __name__ == "__main__":
     #mel_filename = 'r9y9-tts-mel.npy' 
     #np.save(os.path.join(dst_dir, mel_filename), mel_spectrogram.astype(np.float32), allow_pickle=False)
     uuid = str( uuid.uuid4().hex)
-    dst_wav_path = Path(dst_dir,uuid+'.wav')
+    dst_wav_path = Path(dst_dir,Path(checkpoint_path).stem+'_'+uuid+'.wav')
     librosa.output.write_wav(dst_wav_path, wavenet_wav, sr=wavenet_hparams.hparams.sample_rate)
     
-    print('done, check ' + uuid+'.wav')
+    print('done, check ' +Path(dst_wav_path).name)
 
     ##################################
     #    waveglow VOCODER part
