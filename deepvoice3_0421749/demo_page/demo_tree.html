@@ -4,12 +4,15 @@
 <meta charset="utf-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, viewport-fit=cover"/>
 <meta name="description" content="A larger org chart with an Overview and searching capability."/> 
-<link rel="stylesheet" href="./assets/css/style.css"/> 
+<link rel="stylesheet" href="./style.css"/> 
 <!-- Copyright 1998-2021 by Northwoods Software Corporation. -->
 <title>Org Chart Static</title>
 </head>
 
 <body>
+  <div  >
+    <img src="./tts_vocoder_framework.jpg"  style="display:block; margin:0 auto;">
+</div>
 
   <div class="md:flex flex-col md:flex-row md:min-h-screen w-full max-w-screen-xl mx-auto">
     <div id="navSide" class="flex flex-col w-full md:w-48 text-gray-700 bg-white flex-shrink-0"></div>
@@ -47,6 +50,7 @@
       };
 
       myDiagram =
+      
         $(go.Diagram, "myDiagramDiv",  // the DIV HTML element
           {
             // Put the diagram contents at the top center of the viewport
@@ -207,7 +211,7 @@
             
           )
         );
-
+      
       // define the Link template, a simple orthogonal line
       myDiagram.linkTemplate =
         $(go.Link, go.Link.Orthogonal,
@@ -249,7 +253,7 @@
   </script>
 
 <div id="sample" style="position: relative;">
-  <div id="myDiagramDiv" style="background-color: #f2f2f2; border: solid 1px black; width: 100%; height: 1000px"></div>
+  <div id="myDiagramDiv" style="background-color: #f2f2f2; border: solid 1px black; width: 80%; height: 1000px"></div>
   <div id="myOverviewDiv"></div> <!-- Styled in a <style> tag at the top of the html page -->
 
 </div>
