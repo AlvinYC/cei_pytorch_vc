@@ -12,6 +12,7 @@
 <body>
   <div  >
     <img src="./tts_vocoder_framework.jpg"  style="display:block; margin:0 auto;">
+    <img src="./why_compal.jpg"  style="display:block; margin:0 auto;">
 </div>
 
   <div class="md:flex flex-col md:flex-row md:min-h-screen w-full max-w-screen-xl mx-auto">
@@ -230,6 +231,7 @@
 
       // set up the nodeDataArray, describing each person/position
       var ljspeech_wavenet = './0514/20210412_cei_ljspeech_checkpoint_step001630000_88d46e18762f4925aa2ee9e505c5d237.wav';
+      var ljspeech_wavenet_long = './0514/20210412_cei_ljspeech_checkpoint_step001630000_cd7f3d1a5aa14cadb6fdd75be0a6ac93.wav';
       var ljspeechp225_wavenet = './0514/20210426_cei_ljspeech_vctk_p225_checkpoint_step000020000_ff89a9a4965c4a308b97a5b255515da0.wav';
       var ljspeechp225_wavenet_long = './0514/20210426_cei_ljspeech_vctk_p225_checkpoint_step000020000_da4fd7e55cb747cdb2f68e23d248c356.wav'
       var ljspeechp226_wavenet = './0514/20210426_cei_ljspeech_vctk_p226_checkpoint_step000040000_cc4fffc84a444485b9c2cb5e56dc1994.wav';
@@ -243,7 +245,7 @@
         { key: 4, boss: 1, name: "P226", nation: "UnitedStates", title: "Age: 22\nGender: Male\ndatasize: 22minn\nUtterance: 356",wavo1:'./p226_001.wav',wavo2:'./p226_002.wav',wavs:ljspeechp226_wavenet },
         { key: 5, boss: 1, name: "P227", nation: "UnitedStates", title: "Age: 38\nGender: Male\ndatasize: 21minn\nUtterance: 389", wavo1:'./p227_001.wav',wavo2:'./p227_002.wav',wavs:ljspeechp227_wavenet},
         //{ key: 5, boss: 1, name: "P227", nation: "UnitedStates", title: "Age: 38\nGender: Male\ndatasize: 21minn\nUtterance: 389", headOf: "Codification Division",wavo:'./wavenet.wav',wavs:'./wavenet.wav' },
-        { key: 2, boss: 0, name: "w/o Voice Conversiion",wavs:ljspeech_wavenet }
+        { key: 2, boss: 0, name: "w/o Voice Conversiion",wavs:ljspeech_wavenet,long:ljspeech_wavenet_long }
       ];
 
       // create the Model with data for the tree, and assign to the Diagram
